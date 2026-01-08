@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace part3.Models
+namespace spark.Models
 {
     public class Computer
     {
@@ -14,6 +14,7 @@ namespace part3.Models
 
         public string Description { get; set; }
 
+        public string ImageUrl { get; set; }
         // Navigation property for related components
         public List<Component> Components { get; set; } = new List<Component>();
     }

@@ -1,16 +1,16 @@
-﻿using part3.Data;
-// Controllers/HomeController.cs
-using Microsoft.AspNetCore.Mvc;
-using part3.Models;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Authorization;
+﻿using System.Diagnostics;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+// Controllers/HomeController.cs
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using spark.Data;
+using spark.Models;
 
 public class HomeController : Controller
 {
@@ -25,6 +25,7 @@ public class HomeController : Controller
         ViewBag.CustomerName = customerName;
         return View();
     }
+    
 
     public IActionResult Contact()
     {

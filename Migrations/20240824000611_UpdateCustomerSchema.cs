@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace part3.Migrations
+namespace spark.Migrations
 {
     /// <inheritdoc />
     public partial class UpdateCustomerSchema : Migration

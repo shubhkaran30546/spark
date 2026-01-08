@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
-using part3.Data;
+using spark.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

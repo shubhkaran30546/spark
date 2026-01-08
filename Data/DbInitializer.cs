@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using part3.Data;
-using part3.Models;
+using spark.Data;
+using spark.Models;
 
 public static class DbInitializer
 {

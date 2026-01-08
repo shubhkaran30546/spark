@@ -1,5 +1,5 @@
 ﻿using System;
-namespace part3.Models
+namespace spark.Models
 {
     public class Feedback
     {

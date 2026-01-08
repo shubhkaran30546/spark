@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace part3.Models
+namespace spark.Models
 {
     public class Component
     {

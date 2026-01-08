@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using part3.Models;
+using spark.Models;
 
-namespace part3.Data
+namespace spark.Data
 {
     public class ApplicationDbContext : DbContext
     {

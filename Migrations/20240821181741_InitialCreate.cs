@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace part3.Migrations
+namespace spark.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using part3.Data;
+using spark.Data;
 
 #nullable disable
 
-namespace part3.Migrations
+namespace spark.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20240824041220_AddFeedbackTable")]

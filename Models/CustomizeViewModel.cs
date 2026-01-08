@@ -1,4 +1,4 @@
-﻿namespace part3.Models
+﻿namespace spark.Models
 {
     public class CustomizeViewModel
     {
