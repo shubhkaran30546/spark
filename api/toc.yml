@@ -1,0 +1,67 @@
+### YamlMime:TableOfContent
+items:
+- uid: spark.Controllers
+  name: spark.Controllers
+  type: Namespace
+  items:
+  - uid: spark.Controllers.AccountController
+    name: AccountController
+    type: Class
+- uid: spark.Data
+  name: spark.Data
+  type: Namespace
+  items:
+  - uid: spark.Data.ApplicationDbContext
+    name: ApplicationDbContext
+    type: Class
+- uid: spark.Migrations
+  name: spark.Migrations
+  type: Namespace
+  items:
+  - uid: spark.Migrations.AddFeedbackTable
+    name: AddFeedbackTable
+    type: Class
+  - uid: spark.Migrations.InitialCreate
+    name: InitialCreate
+    type: Class
+  - uid: spark.Migrations.InitialIdentity
+    name: InitialIdentity
+    type: Class
+  - uid: spark.Migrations.UpdateCustomerSchema
+    name: UpdateCustomerSchema
+    type: Class
+- uid: spark.Models
+  name: spark.Models
+  type: Namespace
+  items:
+  - uid: spark.Models.Component
+    name: Component
+    type: Class
+  - uid: spark.Models.Computer
+    name: Computer
+    type: Class
+  - uid: spark.Models.CustomizeViewModel
+    name: CustomizeViewModel
+    type: Class
+  - uid: spark.Models.EditOrderViewModel
+    name: EditOrderViewModel
+    type: Class
+  - uid: spark.Models.ErrorViewModel
+    name: ErrorViewModel
+    type: Class
+  - uid: spark.Models.Feedback
+    name: Feedback
+    type: Class
+  - uid: spark.Models.LoginDto
+    name: LoginDto
+    type: Class
+  - uid: spark.Models.Order
+    name: Order
+    type: Class
+  - uid: spark.Models.OrderComponent
+    name: OrderComponent
+    type: Class
+  - uid: spark.Models.RegisterDto
+    name: RegisterDto
+    type: Class
+memberLayout: SamePage

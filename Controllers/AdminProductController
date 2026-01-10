@@ -1,0 +1,36 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using spark.Data;
+using spark.Models;
+
+[Authorize(Roles = "Admin")]
+[ApiController]
+[Route("api/admin/products")]
+public class AdminProductController : ControllerBase
+{
+    private readonly ApplicationDbContext _context;
+
+    public AdminProductController(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> AddProduct(Computer computer)
+    {
+        _context.Computers.Add(computer);
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteProduct(int id)
+    {
+        var product = await _context.Computers.FindAsync(id);
+        if (product == null) return NotFound();
+
+        _context.Computers.Remove(product);
+        await _context.SaveChangesAsync();
+        return NoContent();
+    }
+}

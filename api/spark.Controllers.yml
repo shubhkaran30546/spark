@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: spark.Controllers
+  commentId: N:spark.Controllers
+  id: spark.Controllers
+  children:
+  - spark.Controllers.AccountController
+  langs:
+  - csharp
+  - vb
+  name: spark.Controllers
+  nameWithType: spark.Controllers
+  fullName: spark.Controllers
+  type: Namespace
+  assemblies:
+  - spark
+references:
+- uid: spark.Controllers.AccountController
+  commentId: T:spark.Controllers.AccountController
+  href: spark.Controllers.AccountController.html
+  name: AccountController
+  nameWithType: AccountController
+  fullName: spark.Controllers.AccountController

@@ -1,0 +1,113 @@
+### YamlMime:ManagedReference
+items:
+- uid: spark.Models
+  commentId: N:spark.Models
+  id: spark.Models
+  children:
+  - spark.Models.Component
+  - spark.Models.Computer
+  - spark.Models.CustomizeViewModel
+  - spark.Models.EditOrderViewModel
+  - spark.Models.ErrorViewModel
+  - spark.Models.Feedback
+  - spark.Models.LoginDto
+  - spark.Models.Order
+  - spark.Models.OrderComponent
+  - spark.Models.RegisterDto
+  langs:
+  - csharp
+  - vb
+  name: spark.Models
+  nameWithType: spark.Models
+  fullName: spark.Models
+  type: Namespace
+  assemblies:
+  - spark
+references:
+- uid: spark.Models.Component
+  commentId: T:spark.Models.Component
+  parent: spark.Models
+  href: spark.Models.Component.html
+  name: Component
+  nameWithType: Component
+  fullName: spark.Models.Component
+- uid: spark.Models.Computer
+  commentId: T:spark.Models.Computer
+  parent: spark.Models
+  href: spark.Models.Computer.html
+  name: Computer
+  nameWithType: Computer
+  fullName: spark.Models.Computer
+- uid: spark.Models.CustomizeViewModel
+  commentId: T:spark.Models.CustomizeViewModel
+  href: spark.Models.CustomizeViewModel.html
+  name: CustomizeViewModel
+  nameWithType: CustomizeViewModel
+  fullName: spark.Models.CustomizeViewModel
+- uid: spark.Models.EditOrderViewModel
+  commentId: T:spark.Models.EditOrderViewModel
+  href: spark.Models.EditOrderViewModel.html
+  name: EditOrderViewModel
+  nameWithType: EditOrderViewModel
+  fullName: spark.Models.EditOrderViewModel
+- uid: spark.Models.ErrorViewModel
+  commentId: T:spark.Models.ErrorViewModel
+  href: spark.Models.ErrorViewModel.html
+  name: ErrorViewModel
+  nameWithType: ErrorViewModel
+  fullName: spark.Models.ErrorViewModel
+- uid: spark.Models.Feedback
+  commentId: T:spark.Models.Feedback
+  href: spark.Models.Feedback.html
+  name: Feedback
+  nameWithType: Feedback
+  fullName: spark.Models.Feedback
+- uid: spark.Models.LoginDto
+  commentId: T:spark.Models.LoginDto
+  parent: spark.Models
+  href: spark.Models.LoginDto.html
+  name: LoginDto
+  nameWithType: LoginDto
+  fullName: spark.Models.LoginDto
+- uid: spark.Models.Order
+  commentId: T:spark.Models.Order
+  parent: spark.Models
+  href: spark.Models.Order.html
+  name: Order
+  nameWithType: Order
+  fullName: spark.Models.Order
+- uid: spark.Models.OrderComponent
+  commentId: T:spark.Models.OrderComponent
+  href: spark.Models.OrderComponent.html
+  name: OrderComponent
+  nameWithType: OrderComponent
+  fullName: spark.Models.OrderComponent
+- uid: spark.Models.RegisterDto
+  commentId: T:spark.Models.RegisterDto
+  parent: spark.Models
+  href: spark.Models.RegisterDto.html
+  name: RegisterDto
+  nameWithType: RegisterDto
+  fullName: spark.Models.RegisterDto
+- uid: spark.Models
+  commentId: N:spark.Models
+  href: spark.html
+  name: spark.Models
+  nameWithType: spark.Models
+  fullName: spark.Models
+  spec.csharp:
+  - uid: spark
+    name: spark
+    href: spark.html
+  - name: .
+  - uid: spark.Models
+    name: Models
+    href: spark.Models.html
+  spec.vb:
+  - uid: spark
+    name: spark
+    href: spark.html
+  - name: .
+  - uid: spark.Models
+    name: Models
+    href: spark.Models.html

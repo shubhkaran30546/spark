@@ -1,0 +1,10 @@
+namespace spark.Models
+{
+public class OrderComputerDto
+{
+    public string ComputerName { get; set; } = "";
+    public decimal BasePrice { get; set; }
+    public List<string> Components { get; set; } = new();
+    public decimal TotalPrice { get; set; }
+}
+}

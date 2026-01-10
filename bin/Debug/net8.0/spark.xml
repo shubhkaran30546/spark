@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>spark</name>
+    </assembly>
+    <members>
+        <member name="T:spark.Migrations.InitialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:spark.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:spark.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:spark.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:spark.Migrations.UpdateCustomerSchema">
+            <inheritdoc />
+        </member>
+        <member name="M:spark.Migrations.UpdateCustomerSchema.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:spark.Migrations.UpdateCustomerSchema.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:spark.Migrations.UpdateCustomerSchema.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:spark.Migrations.AddFeedbackTable">
+            <inheritdoc />
+        </member>
+        <member name="M:spark.Migrations.AddFeedbackTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:spark.Migrations.AddFeedbackTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:spark.Migrations.AddFeedbackTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:spark.Migrations.InitialIdentity">
+            <inheritdoc />
+        </member>
+        <member name="M:spark.Migrations.InitialIdentity.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:spark.Migrations.InitialIdentity.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:spark.Migrations.InitialIdentity.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:spark.Migrations.UpdateApplicationUser">
+            <inheritdoc />
+        </member>
+        <member name="M:spark.Migrations.UpdateApplicationUser.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:spark.Migrations.UpdateApplicationUser.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:spark.Migrations.UpdateApplicationUser.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:spark.Models.Computer">
+            <summary>
+            Represents a computer product with pricing, description, and components.
+            </summary>
+        </member>
+        <member name="P:spark.Models.Computer.Id">
+            <summary>
+            Unique identifier for the computer.
+            </summary>
+        </member>
+        <member name="P:spark.Models.Computer.Name">
+            <summary>
+            Name of the computer.
+            </summary>
+        </member>
+        <member name="P:spark.Models.Computer.Price">
+            <summary>
+            Price of the computer.
+            </summary>
+        </member>
+        <member name="P:spark.Models.Computer.Description">
+            <summary>
+            Detailed description of the computer.
+            </summary>
+        </member>
+        <member name="P:spark.Models.Computer.ImageUrl">
+            <summary>
+            URL of the computer image.
+            </summary>
+        </member>
+    </members>
+</doc>

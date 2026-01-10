@@ -1,0 +1,46 @@
+### YamlMime:ManagedReference
+items:
+- uid: spark.Data
+  commentId: N:spark.Data
+  id: spark.Data
+  children:
+  - spark.Data.ApplicationDbContext
+  langs:
+  - csharp
+  - vb
+  name: spark.Data
+  nameWithType: spark.Data
+  fullName: spark.Data
+  type: Namespace
+  assemblies:
+  - spark
+references:
+- uid: spark.Data.ApplicationDbContext
+  commentId: T:spark.Data.ApplicationDbContext
+  parent: spark.Data
+  href: spark.Data.ApplicationDbContext.html
+  name: ApplicationDbContext
+  nameWithType: ApplicationDbContext
+  fullName: spark.Data.ApplicationDbContext
+- uid: spark.Data
+  commentId: N:spark.Data
+  href: spark.html
+  name: spark.Data
+  nameWithType: spark.Data
+  fullName: spark.Data
+  spec.csharp:
+  - uid: spark
+    name: spark
+    href: spark.html
+  - name: .
+  - uid: spark.Data
+    name: Data
+    href: spark.Data.html
+  spec.vb:
+  - uid: spark
+    name: spark
+    href: spark.html
+  - name: .
+  - uid: spark.Data
+    name: Data
+    href: spark.Data.html

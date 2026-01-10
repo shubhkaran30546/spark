@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../build/part3.props" />
-</Project>

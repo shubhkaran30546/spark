@@ -15,9 +15,25 @@ public static class DbInitializer
         {
             var computers = new[]
             {
-                new Computer { Name = "Basic PC", Price = 500, Description = "Standard configuration" },
-                new Computer { Name = "Gaming PC", Price = 1000, Description = "High performance" },
-                new Computer { Name = "Ultra PC", Price = 5000, Description = "High performance" }
+                new Computer {
+    Name = "HP Pavillion",
+    Price = 500,
+    Description = "Standard configuration",
+    ImageUrl = "/uploads/products/hp_pav.webp"
+},
+new Computer {
+    Name = "Imac",
+    Price = 1000,
+    Description = "Apple desktop computer",
+    ImageUrl = "/uploads/products/imac.jpeg"
+},
+new Computer {
+    Name = "Macbook Air",
+    Price = 5000,
+    Description = "Lightweight Apple laptop",
+    ImageUrl = "/uploads/products/mc_air.jpeg"
+}
+
             };
 
             context.Computers.AddRange(computers);

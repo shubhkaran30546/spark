@@ -1,0 +1,669 @@
+### YamlMime:ManagedReference
+items:
+- uid: spark.Models.Computer
+  commentId: T:spark.Models.Computer
+  id: Computer
+  parent: spark.Models
+  children:
+  - spark.Models.Computer.Components
+  - spark.Models.Computer.Description
+  - spark.Models.Computer.Id
+  - spark.Models.Computer.ImageUrl
+  - spark.Models.Computer.Name
+  - spark.Models.Computer.Price
+  langs:
+  - csharp
+  - vb
+  name: Computer
+  nameWithType: Computer
+  fullName: spark.Models.Computer
+  type: Class
+  source:
+    remote:
+      path: Models/Computer.cs
+      branch: main
+      repo: https://github.com/shubhkaran30546/part3
+    id: Computer
+    path: Models/Computer.cs
+    startLine: 8
+  assemblies:
+  - spark
+  namespace: spark.Models
+  summary: Represents a computer product with pricing, description, and components.
+  example: []
+  syntax:
+    content: public class Computer
+    content.vb: Public Class Computer
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: spark.Models.Computer.Id
+  commentId: P:spark.Models.Computer.Id
+  id: Id
+  parent: spark.Models.Computer
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: Computer.Id
+  fullName: spark.Models.Computer.Id
+  type: Property
+  source:
+    remote:
+      path: Models/Computer.cs
+      branch: main
+      repo: https://github.com/shubhkaran30546/part3
+    id: Id
+    path: Models/Computer.cs
+    startLine: 13
+  assemblies:
+  - spark
+  namespace: spark.Models
+  summary: Unique identifier for the computer.
+  example: []
+  syntax:
+    content: public int Id { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Id As Integer
+  overload: spark.Models.Computer.Id*
+- uid: spark.Models.Computer.Name
+  commentId: P:spark.Models.Computer.Name
+  id: Name
+  parent: spark.Models.Computer
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: Computer.Name
+  fullName: spark.Models.Computer.Name
+  type: Property
+  source:
+    remote:
+      path: Models/Computer.cs
+      branch: main
+      repo: https://github.com/shubhkaran30546/part3
+    id: Name
+    path: Models/Computer.cs
+    startLine: 18
+  assemblies:
+  - spark
+  namespace: spark.Models
+  summary: Name of the computer.
+  example: []
+  syntax:
+    content: >-
+      [Required]
+
+      public string Name { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <Required>
+
+      Public Property Name As String
+  overload: spark.Models.Computer.Name*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+- uid: spark.Models.Computer.Price
+  commentId: P:spark.Models.Computer.Price
+  id: Price
+  parent: spark.Models.Computer
+  langs:
+  - csharp
+  - vb
+  name: Price
+  nameWithType: Computer.Price
+  fullName: spark.Models.Computer.Price
+  type: Property
+  source:
+    remote:
+      path: Models/Computer.cs
+      branch: main
+      repo: https://github.com/shubhkaran30546/part3
+    id: Price
+    path: Models/Computer.cs
+    startLine: 24
+  assemblies:
+  - spark
+  namespace: spark.Models
+  summary: Price of the computer.
+  example: []
+  syntax:
+    content: public decimal Price { get; set; }
+    parameters: []
+    return:
+      type: System.Decimal
+    content.vb: Public Property Price As Decimal
+  overload: spark.Models.Computer.Price*
+- uid: spark.Models.Computer.Description
+  commentId: P:spark.Models.Computer.Description
+  id: Description
+  parent: spark.Models.Computer
+  langs:
+  - csharp
+  - vb
+  name: Description
+  nameWithType: Computer.Description
+  fullName: spark.Models.Computer.Description
+  type: Property
+  source:
+    remote:
+      path: Models/Computer.cs
+      branch: main
+      repo: https://github.com/shubhkaran30546/part3
+    id: Description
+    path: Models/Computer.cs
+    startLine: 29
+  assemblies:
+  - spark
+  namespace: spark.Models
+  summary: Detailed description of the computer.
+  example: []
+  syntax:
+    content: public string Description { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Description As String
+  overload: spark.Models.Computer.Description*
+- uid: spark.Models.Computer.ImageUrl
+  commentId: P:spark.Models.Computer.ImageUrl
+  id: ImageUrl
+  parent: spark.Models.Computer
+  langs:
+  - csharp
+  - vb
+  name: ImageUrl
+  nameWithType: Computer.ImageUrl
+  fullName: spark.Models.Computer.ImageUrl
+  type: Property
+  source:
+    remote:
+      path: Models/Computer.cs
+      branch: main
+      repo: https://github.com/shubhkaran30546/part3
+    id: ImageUrl
+    path: Models/Computer.cs
+    startLine: 34
+  assemblies:
+  - spark
+  namespace: spark.Models
+  summary: URL of the computer image.
+  example: []
+  syntax:
+    content: public string ImageUrl { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ImageUrl As String
+  overload: spark.Models.Computer.ImageUrl*
+- uid: spark.Models.Computer.Components
+  commentId: P:spark.Models.Computer.Components
+  id: Components
+  parent: spark.Models.Computer
+  langs:
+  - csharp
+  - vb
+  name: Components
+  nameWithType: Computer.Components
+  fullName: spark.Models.Computer.Components
+  type: Property
+  source:
+    remote:
+      path: Models/Computer.cs
+      branch: main
+      repo: https://github.com/shubhkaran30546/part3
+    id: Components
+    path: Models/Computer.cs
+    startLine: 39
+  assemblies:
+  - spark
+  namespace: spark.Models
+  summary: Components associated with this computer.
+  example: []
+  syntax:
+    content: public List<Component> Components { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{spark.Models.Component}
+    content.vb: Public Property Components As List(Of Component)
+  overload: spark.Models.Computer.Components*
+references:
+- uid: spark.Models
+  commentId: N:spark.Models
+  href: spark.html
+  name: spark.Models
+  nameWithType: spark.Models
+  fullName: spark.Models
+  spec.csharp:
+  - uid: spark
+    name: spark
+    href: spark.html
+  - name: .
+  - uid: spark.Models
+    name: Models
+    href: spark.Models.html
+  spec.vb:
+  - uid: spark
+    name: spark
+    href: spark.html
+  - name: .
+  - uid: spark.Models
+    name: Models
+    href: spark.Models.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: spark.Models.Computer.Id*
+  commentId: Overload:spark.Models.Computer.Id
+  href: spark.Models.Computer.html#spark_Models_Computer_Id
+  name: Id
+  nameWithType: Computer.Id
+  fullName: spark.Models.Computer.Id
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: spark.Models.Computer.Name*
+  commentId: Overload:spark.Models.Computer.Name
+  href: spark.Models.Computer.html#spark_Models_Computer_Name
+  name: Name
+  nameWithType: Computer.Name
+  fullName: spark.Models.Computer.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: spark.Models.Computer.Price*
+  commentId: Overload:spark.Models.Computer.Price
+  href: spark.Models.Computer.html#spark_Models_Computer_Price
+  name: Price
+  nameWithType: Computer.Price
+  fullName: spark.Models.Computer.Price
+- uid: System.Decimal
+  commentId: T:System.Decimal
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.decimal
+  name: decimal
+  nameWithType: decimal
+  fullName: decimal
+  nameWithType.vb: Decimal
+  fullName.vb: Decimal
+  name.vb: Decimal
+- uid: spark.Models.Computer.Description*
+  commentId: Overload:spark.Models.Computer.Description
+  href: spark.Models.Computer.html#spark_Models_Computer_Description
+  name: Description
+  nameWithType: Computer.Description
+  fullName: spark.Models.Computer.Description
+- uid: spark.Models.Computer.ImageUrl*
+  commentId: Overload:spark.Models.Computer.ImageUrl
+  href: spark.Models.Computer.html#spark_Models_Computer_ImageUrl
+  name: ImageUrl
+  nameWithType: Computer.ImageUrl
+  fullName: spark.Models.Computer.ImageUrl
+- uid: spark.Models.Computer.Components*
+  commentId: Overload:spark.Models.Computer.Components
+  href: spark.Models.Computer.html#spark_Models_Computer_Components
+  name: Components
+  nameWithType: Computer.Components
+  fullName: spark.Models.Computer.Components
+- uid: System.Collections.Generic.List{spark.Models.Component}
+  commentId: T:System.Collections.Generic.List{spark.Models.Component}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<Component>
+  nameWithType: List<Component>
+  fullName: System.Collections.Generic.List<spark.Models.Component>
+  nameWithType.vb: List(Of Component)
+  fullName.vb: System.Collections.Generic.List(Of spark.Models.Component)
+  name.vb: List(Of Component)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: spark.Models.Component
+    name: Component
+    href: spark.Models.Component.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: spark.Models.Component
+    name: Component
+    href: spark.Models.Component.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic

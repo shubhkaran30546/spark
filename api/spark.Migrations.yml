@@ -1,0 +1,44 @@
+### YamlMime:ManagedReference
+items:
+- uid: spark.Migrations
+  commentId: N:spark.Migrations
+  id: spark.Migrations
+  children:
+  - spark.Migrations.AddFeedbackTable
+  - spark.Migrations.InitialCreate
+  - spark.Migrations.InitialIdentity
+  - spark.Migrations.UpdateCustomerSchema
+  langs:
+  - csharp
+  - vb
+  name: spark.Migrations
+  nameWithType: spark.Migrations
+  fullName: spark.Migrations
+  type: Namespace
+  assemblies:
+  - spark
+references:
+- uid: spark.Migrations.InitialCreate
+  commentId: T:spark.Migrations.InitialCreate
+  href: spark.Migrations.InitialCreate.html
+  name: InitialCreate
+  nameWithType: InitialCreate
+  fullName: spark.Migrations.InitialCreate
+- uid: spark.Migrations.UpdateCustomerSchema
+  commentId: T:spark.Migrations.UpdateCustomerSchema
+  href: spark.Migrations.UpdateCustomerSchema.html
+  name: UpdateCustomerSchema
+  nameWithType: UpdateCustomerSchema
+  fullName: spark.Migrations.UpdateCustomerSchema
+- uid: spark.Migrations.AddFeedbackTable
+  commentId: T:spark.Migrations.AddFeedbackTable
+  href: spark.Migrations.AddFeedbackTable.html
+  name: AddFeedbackTable
+  nameWithType: AddFeedbackTable
+  fullName: spark.Migrations.AddFeedbackTable
+- uid: spark.Migrations.InitialIdentity
+  commentId: T:spark.Migrations.InitialIdentity
+  href: spark.Migrations.InitialIdentity.html
+  name: InitialIdentity
+  nameWithType: InitialIdentity
+  fullName: spark.Migrations.InitialIdentity
