@@ -1,47 +1,90 @@
-# spark
+# Spark
 
-Small e-commerce sample app built with ASP.NET Core and EF Core.
+Full-stack small e-commerce computer app with an ASP.NET Core backend and an Angular frontend.
 
-Quick overview
-- Minimal API controllers under `Controllers/` (also some MVC views).
-- EF Core models in `Models/` and `Data/ApplicationDbContext.cs`.
-- Swagger is configured for API exploration.
+## Project Structure
+- `backend/` – ASP.NET Core + EF Core API
+- `spark-ui/` – Angular frontend (Universal / SSR enabled)
 
-Prerequisites
-- .NET 8 SDK (this project targets net8.0)
+---
 
-Getting started
+## Quick Overview
+- API controllers: `backend/Controllers`
+- EF Core models: `backend/Models` and `backend/Data/ApplicationDbContext.cs`
+- Swagger for API exploration (enabled in Development)
+- Angular app: `spark-ui/src` (standalone components + SSR)
 
-1. Restore and build:
+---
+
+## Prerequisites
+- [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+- [Node.js + npm](https://nodejs.org/)
+- (optional) Angular CLI:
 
 ```bash
+npm install -g @angular/cli
+```
+
+## Backend (ASP.NET Core)
+
+- Requirements: .NET 8 SDK installed.
+- From the repo root, start the backend:
+
+```bash
+cd backend
 dotnet restore
-dotnet build
+dotnet ef database update    # optional: apply migrations
+dotnet run
 ```
 
-2. Run the app (bind to a local port):
+- By default the project launches HTTP on `http://localhost:5097` (see `backend/Properties/launchSettings.json`).
+- Swagger is available in Development at `http://localhost:5097/swagger`.
+
+Notes:
+- The app uses Identity for authentication; auth endpoints live under `/api/auth`.
+- For local SSR development, prefer using the HTTP backend URL from Node to avoid TLS cert issues.
+
+## Frontend (Angular)
+
+- Requirements: Node.js and npm (see `package.json` for tested versions).
+- Install dependencies and run in development:
 
 ```bash
-dotnet run --urls http://localhost:5002
+cd spark-ui
+npm install
+npm run start
 ```
 
-3. Open Swagger UI:
+- To build server-side rendering (SSR) output and run the Node server:
 
-http://localhost:5002/swagger
+```bash
+cd spark-ui
+npm run build
+npm run serve:ssr:spark-ui
+```
 
-Notes
-- The project uses SQLite by default; connection string is in `appsettings.json`.
-- The `AccountController` currently contains a placeholder `GenerateJwt` method — replace with a proper JWT implementation if you need token auth.
-- JSON reference cycles are ignored via `ReferenceHandler.IgnoreCycles` to avoid serialization errors for navigation properties.
+- The SSR server will fetch backend APIs. If your backend runs on a different port or protocol, update `src/app/services/computer.service.ts` accordingly.
 
-Database initialization
-- The app runs `DbInitializer.Initialize(...)` at startup to seed sample Computers and Components.
+## Troubleshooting
 
-If push fails
-- If `git push` fails due to missing remote or auth, set up your remote and credentials, then run:
+- NG02801 (fetch warning): Ensure `provideHttpClient(withFetch())` is registered in `src/app/app.config.server.ts` (already configured here).
+- ERR_SSL_PACKET_LENGTH_TOO_LONG / fetch failed: This happens when Node's fetch tries HTTPS against an HTTP backend port. Use `http://localhost:5097` for SSR or configure valid TLS for Node.
+- CORS: Backend allows `http://localhost:4200` by default. If your frontend uses a different origin, update CORS policy in `backend/Program.cs`.
+
+## Development tips
+
+- When changing models/migrations, run EF migrations and update the DB with `dotnet ef database update`.
+- Swagger JSON is useful for quick API checks: `http://localhost:5097/swagger/v1/swagger.json`.
+
+## Contributing / Pushing
+
+- Make sure you have a Git remote configured. Example:
 
 ```bash
 git remote add origin <your-repo-url>
 git push -u origin main
 ```
 
+---
+
+If you want, I can also add a short `Makefile` or npm script to automate starting backend + SSR together.
