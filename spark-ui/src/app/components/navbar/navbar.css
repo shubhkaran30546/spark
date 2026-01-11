@@ -1,13 +1,46 @@
 .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 16px 32px;
-  background: #020617;
+  background: rgba(18, 20, 40, 0.85);
+  backdrop-filter: blur(12px);
   color: white;
 }
 
-.links a {
-  margin-left: 20px;
-  color: white;
+.logo {
+  font-weight: bold;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.nav-center a {
+  margin: 0 16px;
   text-decoration: none;
+  color: #d0d3ff;
+  font-weight: 500;
+}
+
+.nav-center a:hover {
+  color: white;
+}
+
+.cart {
+  position: relative;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: #6c63ff;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 999px;
 }

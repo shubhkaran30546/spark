@@ -9,49 +9,51 @@ public static class DbInitializer
         using var context = new ApplicationDbContext(
             serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>());
 
+        // Ensure DB exists
         context.Database.EnsureCreated();
 
-        if (!context.Computers.Any())
-        {
-            var computers = new[]
-            {
-                new Computer {
+        // Clear existing data
+        context.Components.RemoveRange(context.Components);
+        context.Computers.RemoveRange(context.Computers);
+        context.SaveChanges();
+
+        // Seed computers
+        // Seed computers
+var hp = new Computer {
     Name = "HP Pavillion",
     Price = 500,
     Description = "Standard configuration",
-    ImageUrl = "/uploads/products/hp_pav.webp"
-},
-new Computer {
+    ImageUrl = "./public/hp_pav.webp"
+};
+var imac = new Computer {
     Name = "Imac",
     Price = 1000,
     Description = "Apple desktop computer",
-    ImageUrl = "/uploads/products/imac.jpeg"
-},
-new Computer {
+    ImageUrl = "./public/imac.jpeg"
+};
+var macAir = new Computer {
     Name = "Macbook Air",
     Price = 5000,
     Description = "Lightweight Apple laptop",
-    ImageUrl = "/uploads/products/mc_air.jpeg"
-}
+    ImageUrl = "./public/mc_air.jpeg"
+};
 
-            };
+context.Computers.AddRange(hp, imac, macAir);
+context.SaveChanges(); // IDs are now generated
 
-            context.Computers.AddRange(computers);
-            context.SaveChanges();
-        }
+// Seed components using navigation property
+var components = new[]
+{
+    new Component { Name = "8GB RAM", Price = 50, Type = "RAM", Computer = hp },
+    new Component { Name = "16GB RAM", Price = 100, Type = "RAM", Computer = imac },
+    new Component { Name = "500GB SSD", Price = 75, Type = "Storage", Computer = hp },
+    new Component { Name = "1TB SSD", Price = 150, Type = "Storage", Computer = imac }
+};
 
-        if (!context.Components.Any())
-        {
-            var components = new[]
-            {
-                new Component { Name = "8GB RAM", Price = 50, Type = "RAM", ComputerId = 1 },
-                new Component { Name = "16GB RAM", Price = 100, Type = "RAM", ComputerId = 2 },
-                new Component { Name = "500GB SSD", Price = 75, Type = "Storage", ComputerId = 1 },
-                new Component { Name = "1TB SSD", Price = 150, Type = "Storage", ComputerId = 2 }
-            };
+context.Components.AddRange(components);
+context.SaveChanges();
 
-            context.Components.AddRange(components);
-            context.SaveChanges();
-        }
+
+        Console.WriteLine("Database reset and seeded with new data!");
     }
 }

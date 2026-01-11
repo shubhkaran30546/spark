@@ -1,0 +1,26 @@
+using Microsoft.EntityFrameworkCore;
+using spark.Data;
+
+public static class DbUrlUpdater
+{
+    public static void UpdateImageUrls(IServiceProvider serviceProvider)
+    {
+        using var context = new ApplicationDbContext(
+            serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>());
+
+        var computers = context.Computers.ToList();
+
+        foreach (var comp in computers)
+        {
+            // Only update if old URL exists
+            if (comp.ImageUrl.StartsWith("/uploads/products/"))
+            {
+                var fileName = comp.ImageUrl.Split('/').Last(); // "imac.jpeg"
+                comp.ImageUrl = $"./public/{fileName}";
+            }
+        }
+
+        context.SaveChanges();
+        Console.WriteLine("All ImageUrls updated!");
+    }
+}

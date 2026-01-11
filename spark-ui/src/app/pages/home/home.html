@@ -1,18 +1,23 @@
-<section class="hero">
-  <h1>Build Your Perfect Machine</h1>
-  <p>High-performance customizable computers</p>
-  <button routerLink="/shop">Browse Computers</button>
+<div class="hero">
+  <h1>Build Your Perfect Computer</h1>
+  <p>High-performance PCs, customized for you</p>
+  <button class="primary-btn">Browse Computers</button>
+</div>
+
+<section class="products">
+  <div class="card" *ngFor="let computer of computers">
+    <img [src]="computer.imageUrl" [alt]="computer.name" />
+    <h3>{{ computer.name }}</h3>
+    <p class="price">From ${{ computer.price }}</p>
+    <button class="secondary-btn">Customize</button>
+  </div>
 </section>
 
-<section class="featured">
-  <h2>Featured Computers</h2>
-
-  <div class="grid">
-    <div class="card" *ngFor="let pc of featuredComputers">
-      <img [src]="pc.image" />
-      <h3>{{ pc.name }}</h3>
-      <p>Starting at ${{ pc.price }}</p>
-      <button routerLink="['/computer', pc.id]">Customize</button>
-    </div>
-  </div>
+<section class="why">
+  <h2>Why Spark?</h2>
+  <ul>
+    <li>✔ Custom components</li>
+    <li>✔ Transparent pricing</li>
+    <li>✔ Clean & simple</li>
+  </ul>
 </section>
