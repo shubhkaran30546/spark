@@ -251,7 +251,6 @@
 /Users/shubhkarandhillon/Documents/spark/backend/bin/Debug/net8.0/System.Runtime.Caching.dll
 /Users/shubhkarandhillon/Documents/spark/backend/bin/Debug/net8.0/System.Security.Cryptography.ProtectedData.dll
 /Users/shubhkarandhillon/Documents/spark/backend/bin/Debug/net8.0/System.Security.Permissions.dll
-/Users/shubhkarandhillon/Documents/spark/backend/bin/Debug/net8.0/System.Text.Json.dll
 /Users/shubhkarandhillon/Documents/spark/backend/bin/Debug/net8.0/System.Windows.Extensions.dll
 /Users/shubhkarandhillon/Documents/spark/backend/bin/Debug/net8.0/cs/Microsoft.CodeAnalysis.resources.dll
 /Users/shubhkarandhillon/Documents/spark/backend/bin/Debug/net8.0/de/Microsoft.CodeAnalysis.resources.dll
