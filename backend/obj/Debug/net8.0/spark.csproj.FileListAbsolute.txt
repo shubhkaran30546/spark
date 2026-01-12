@@ -360,3 +360,4 @@
 /Users/shubhkarandhillon/Documents/spark/backend/obj/Debug/net8.0/spark.pdb
 /Users/shubhkarandhillon/Documents/spark/backend/obj/Debug/net8.0/spark.genruntimeconfig.cache
 /Users/shubhkarandhillon/Documents/spark/backend/obj/Debug/net8.0/ref/spark.dll
+/Users/shubhkarandhillon/Documents/spark/backend/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll

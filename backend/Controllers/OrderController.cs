@@ -3,69 +3,123 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using spark.Data;
 using System.Security.Claims;
+using spark.Models;
 
-[ApiController]
-[Route("api/orders")]
-[Authorize]
-public class OrdersController : ControllerBase
+    [ApiController]
+    [Route("api/orders")]
+    [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)]
+    public class OrdersController : ControllerBase
+    {
+        private readonly ApplicationDbContext _context;
+
+        public OrdersController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        [HttpPost]
+public async Task<IActionResult> CreateOrder([FromBody] CreateOrderDto dto)
 {
-    private readonly ApplicationDbContext _context;
+    // 1️⃣ Get the current user ID
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    if (userId == null)
+        return Unauthorized();
 
-    public OrdersController(ApplicationDbContext context)
+    // 2️⃣ Load the computer
+    var computer = await _context.Computers
+        .FirstOrDefaultAsync(c => c.Id == dto.ComputerId);
+
+    if (computer == null)
+        return BadRequest("Invalid computer ID.");
+
+    // 3️⃣ Load components
+    var components = await _context.Components
+        .Where(c => dto.ComponentIds.Contains(c.Id))
+        .ToListAsync();
+
+    if (components.Count != dto.ComponentIds.Count)
+        return BadRequest("One or more component IDs are invalid.");
+
+    // 4️⃣ Calculate total price (server-side)
+    var totalPrice = computer.Price + components.Sum(c => c.Price);
+
+    // 5️⃣ Create the order along with its components
+    var order = new Order
     {
-        _context = context;
-    }
+        UserId = userId,
+        ComputerId = computer.Id,
+        TotalPrice = totalPrice,
+        OrderDate = DateTime.UtcNow,
+        OrderComponents = components.Select(c => new OrderComponent
+        {
+            ComponentId = c.Id
+        }).ToList()
+    };
 
-    // GET: api/orders
-    [HttpGet]
-    public async Task<IActionResult> GetOrders()
-    {
-        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    _context.Orders.Add(order);
+    await _context.SaveChangesAsync(); // EF handles both Order and OrderComponents
 
-        var orders = await _context.Orders
-            .Include(o => o.Computer)
-            .Include(o => o.OrderComponents)
-                .ThenInclude(oc => oc.Component)
-            .Where(o => o.UserId == userId)
-            .ToListAsync();
+    // 6️⃣ Load the order with components to return
+    var createdOrder = await _context.Orders
+        .Include(o => o.Computer)
+        .Include(o => o.OrderComponents)
+            .ThenInclude(oc => oc.Component)
+        .FirstOrDefaultAsync(o => o.Id == order.Id);
 
-        return Ok(orders);
-    }
-
-    // GET: api/orders/5
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetOrder(int id)
-    {
-        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-        var order = await _context.Orders
-            .Include(o => o.Computer)
-            .Include(o => o.OrderComponents)
-                .ThenInclude(oc => oc.Component)
-            .FirstOrDefaultAsync(o => o.Id == id && o.UserId == userId);
-
-        if (order == null)
-            return NotFound();
-
-        return Ok(order);
-    }
-
-    // DELETE: api/orders/5
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteOrder(int id)
-    {
-        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-        var order = await _context.Orders
-            .Include(o => o.OrderComponents)
-            .FirstOrDefaultAsync(o => o.Id == id && o.UserId == userId);
-
-        if (order == null)
-            return NotFound();
-
-        _context.Orders.Remove(order);
-        await _context.SaveChangesAsync();
-
-        return NoContent();
-    }
+    return CreatedAtAction(nameof(GetOrder), new { id = order.Id }, createdOrder);
 }
+
+
+        // GET: api/orders
+        [HttpGet]
+        public async Task<IActionResult> GetOrders()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var orders = await _context.Orders
+                .Include(o => o.Computer)
+                .Include(o => o.OrderComponents)
+                    .ThenInclude(oc => oc.Component)
+                .Where(o => o.UserId == userId)
+                .ToListAsync();
+
+            return Ok(orders);
+        }
+
+        // GET: api/orders/5
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetOrder(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var order = await _context.Orders
+                .Include(o => o.Computer)
+                .Include(o => o.OrderComponents)
+                    .ThenInclude(oc => oc.Component)
+                .FirstOrDefaultAsync(o => o.Id == id && o.UserId == userId);
+
+            if (order == null)
+                return NotFound();
+
+            return Ok(order);
+        }
+
+        // DELETE: api/orders/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteOrder(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var order = await _context.Orders
+                .Include(o => o.OrderComponents)
+                .FirstOrDefaultAsync(o => o.Id == id && o.UserId == userId);
+
+            if (order == null)
+                return NotFound();
+
+            _context.Orders.Remove(order);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+    }

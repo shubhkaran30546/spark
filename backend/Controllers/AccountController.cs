@@ -63,8 +63,8 @@ public class AccountController : ControllerBase
 {
     var claims = new[]
     {
-        new Claim(JwtRegisteredClaimNames.Sub, user.Id),
-        new Claim(JwtRegisteredClaimNames.Email, user.Email!),
+        new Claim(ClaimTypes.NameIdentifier, user.Id), // 🔥 REQUIRED
+        new Claim(ClaimTypes.Email, user.Email!),
         new Claim(ClaimTypes.Name, user.UserName!)
     };
 
@@ -84,5 +84,7 @@ public class AccountController : ControllerBase
 
     return new JwtSecurityTokenHandler().WriteToken(token);
 }
+
+
 
 }

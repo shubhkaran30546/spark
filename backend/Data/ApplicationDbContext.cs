@@ -54,9 +54,11 @@ namespace spark.Data
                 .HasKey(oc => new { oc.OrderId, oc.ComponentId });
 
             modelBuilder.Entity<OrderComponent>()
-                .HasOne(oc => oc.Order)
-                .WithMany(o => o.OrderComponents)
-                .HasForeignKey(oc => oc.OrderId);
+            .HasOne(oc => oc.Order)
+            .WithMany(o => o.OrderComponents)
+            .HasForeignKey(oc => oc.OrderId)
+            .OnDelete(DeleteBehavior.Cascade);
+
 
             modelBuilder.Entity<OrderComponent>()
                 .HasOne(oc => oc.Component)

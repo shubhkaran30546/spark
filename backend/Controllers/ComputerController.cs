@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using spark.Data;
 using spark.Models;
 
+namespace spark.Controllers{
 [ApiController]
 [Route("api/[controller]")]
 public class ComputersController : ControllerBase
@@ -38,4 +39,5 @@ public class ComputersController : ControllerBase
 
         return Ok(computer);
     }
+}
 }

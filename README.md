@@ -51,8 +51,7 @@ Notes:
 
 ```bash
 cd spark-ui
-npm install
-npm run start
+ng serve
 ```
 
 - To build server-side rendering (SSR) output and run the Node server:

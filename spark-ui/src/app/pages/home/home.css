@@ -76,3 +76,44 @@
 .why li {
   margin: 8px 0;
 }
+
+
+/* Responsive for tablets and below */
+@media (max-width: 1024px) {
+  .products {
+    flex-wrap: wrap;       /* Allow cards to wrap to next line */
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .card {
+    width: 45%;            /* Two cards per row */
+    margin-bottom: 20px;
+  }
+}
+
+/* Responsive for mobile phones */
+@media (max-width: 600px) {
+  .products {
+    flex-direction: column; /* Stack cards vertically */
+    gap: 16px;
+    padding: 30px 10px;
+  }
+
+  .card {
+    width: 100%;            /* Full width */
+    padding: 16px;
+  }
+
+  .hero {
+    padding: 60px 15px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+}
