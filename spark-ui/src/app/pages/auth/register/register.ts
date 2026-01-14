@@ -52,7 +52,7 @@ export class RegisterComponent {
           queryParams: { registered: 'true' }
         });
       },
-      error: (err) => {
+      error: (err: any) => {
         this.error = err.error?.message || 'Registration failed. Please try again.';
         this.isLoading = false;
       },

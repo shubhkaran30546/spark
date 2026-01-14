@@ -23,11 +23,11 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cartService.cartItems$.subscribe(items => {
-      this.cartCount = items.reduce((total, item) => total + item.quantity, 0);
+    this.cartService.cartItems$.subscribe((items: Array<{ quantity: number }>) => {
+      this.cartCount = items.reduce((total: number, item: { quantity: number }) => total + item.quantity, 0);
     });
 
-    this.authService.user$.subscribe(user => {
+    this.authService.user$.subscribe((user: any) => {
       this.isAuthenticated = !!user;
     });
   }

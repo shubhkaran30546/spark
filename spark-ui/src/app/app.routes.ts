@@ -4,10 +4,14 @@ import { HomeComponent } from './pages/home/home';
 import { ComputerList } from './pages/computer-list/computer-list';
 import { Cart } from './pages/cart/cart';
 import { ComputerDetails } from './pages/computer-details/computer-details';
+import { LoginComponent } from './pages/auth/login/login';
+import { RegisterComponent } from './pages/auth/register/register';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'computers', component: ComputerList },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'cart', component: Cart },
   { path: 'computers/:id', component: ComputerDetails }
 

@@ -41,7 +41,7 @@ export class LoginComponent {
       next: () => {
         this.router.navigate(['/']);
       },
-      error: (err) => {
+      error: (err: any) => {
         this.error = err.error?.message || 'Login failed. Please try again.';
         this.isLoading = false;
       },

@@ -1,7 +1,7 @@
 // src/app/pages/orders/orders.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { OrderService, Order } from '../../services/order.service';
 import { AuthService } from '../../services/auth.service';
 
@@ -19,8 +19,13 @@ export class OrdersComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
+
+  viewOrderDetails(id: number): void {
+    this.router.navigate(['/orders', id]);
+  }
 
   ngOnInit(): void {
     if (!this.authService.isAuthenticated) {

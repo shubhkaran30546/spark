@@ -3,7 +3,8 @@
   top: 0;
   z-index: 100;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
   align-items: center;
   padding: 16px 32px;
   background: rgba(18, 20, 40, 0.85);
@@ -16,31 +17,81 @@
   font-size: 20px;
   letter-spacing: 1px;
 }
+/* center links between brand and actions */
+.nav-links {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex: 1 1 auto;
+}
 
-.nav-center a {
-  margin: 0 16px;
+.nav-links a {
+  margin: 0 8px;
   text-decoration: none;
   color: #d0d3ff;
   font-weight: 500;
 }
 
-.nav-center a:hover {
+.nav-links a.active,
+.nav-links a:hover {
   color: white;
 }
 
-.cart {
-  position: relative;
-  cursor: pointer;
-  font-size: 18px;
+.nav-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
 
-.badge {
+.cart-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #d0d3ff;
+  font-size: 16px;
+}
+
+.cart-count {
   position: absolute;
   top: -6px;
-  right: -10px;
+  right: -8px;
   background: #6c63ff;
   color: white;
   font-size: 12px;
   padding: 2px 6px;
   border-radius: 999px;
+}
+
+.auth-buttons .btn {
+  margin-left: 8px;
+}
+
+.user-menu {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* responsive: stack nav on small screens */
+@media (max-width: 640px) {
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px 16px;
+  }
+
+  .nav-links {
+    order: 2;
+    width: 100%;
+    justify-content: space-around;
+    margin: 8px 0;
+  }
+
+  .nav-actions {
+    order: 3;
+    justify-content: flex-end;
+    width: 100%;
+  }
 }
