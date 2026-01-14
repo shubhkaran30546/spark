@@ -7,7 +7,7 @@ namespace spark.Data
 {
     public static class DbInitializer
     {
-        public static async Task InitializeAsync(IServiceProvider serviceProvider)
+        public static async Task Initialize(IServiceProvider serviceProvider)
         {
             using var scope = serviceProvider.CreateScope();
 

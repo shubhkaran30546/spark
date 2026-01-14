@@ -69,22 +69,35 @@ export class CartService {
   }
 
   addToCart(item: Omit<CartItem, 'quantity'>): void {
-    const currentItems = this.cartItems.value;
-    const existingItem = currentItems.find(
-      i => i.computerId === item.computerId && 
-           this.areComponentsEqual(i.components, item.components)
-    );
+  const currentItems = [...this.cartItems.value];
 
-    if (existingItem) {
-      existingItem.quantity += 1;
+  const existingItem = currentItems.find(
+    i => i.computerId === item.computerId &&
+         this.areComponentsEqual(i.components, item.components)
+  );
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+    this.cartItems.next(currentItems); // ✅ update UI immediately
+
+    if (this.authService.isAuthenticated) {
       this.syncWithServer(existingItem).subscribe();
-    } else {
-      const newItem = { ...item, quantity: 1 };
-      this.syncWithServer(newItem).subscribe(createdItem => {
-        this.cartItems.next([...currentItems, createdItem]);
+    }
+  } else {
+    const newItem: CartItem = { ...item, quantity: 1 };
+    this.cartItems.next([...currentItems, newItem]); // ✅ show instantly
+
+    if (this.authService.isAuthenticated) {
+      this.syncWithServer(newItem).subscribe(created => {
+        const updated = this.cartItems.value.map(i =>
+          i === newItem ? created : i
+        );
+        this.cartItems.next(updated);
       });
     }
   }
+}
+
 
   updateQuantity(itemId: number, quantity: number): void {
     if (quantity < 1) {
@@ -135,6 +148,25 @@ export class CartService {
       0
     );
   }
+private getAuthHeaders() {
+  return { headers: this.authService.authHeader };
+}
+
+
+checkout(): Observable<any> {
+  const items = this.cartItems.value.map(item => ({
+    computerId: item.computerId,
+    quantity: item.quantity,
+    components: item.components.map(c => ({ id: c.id }))
+  }));
+
+  return this.http.post<any>(`${this.API_URL}`, { items }, this.getAuthHeaders()).pipe(
+    tap(() => {
+      this.cartItems.next([]);
+    })
+  );
+}
+
 
   private areComponentsEqual(a: any[], b: any[]): boolean {
     if (a.length !== b.length) return false;

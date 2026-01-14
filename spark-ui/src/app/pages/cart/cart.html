@@ -48,9 +48,9 @@
         </div>
         
         <div class="item-total">
-          {{ (item.computerPrice * item.quantity) + 
-             (item.components.reduce((sum, c) => sum + c.price, 0) * item.quantity) | currency }}
-        </div>
+  {{ getItemTotal(item) | currency }}
+</div>
+
       </div>
 
       <div class="cart-summary">

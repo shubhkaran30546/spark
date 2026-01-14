@@ -1,71 +1,138 @@
-// src/app/pages/cart/cart.ts
-import { Component, OnInit } from '@angular/core';
-import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
-import { CartService, CartItem } from '../../services/cart.service';
+// src/app/services/cart.service.ts
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 
-@Component({
-  selector: 'app-cart',
-  standalone: true,
-  imports: [CommonModule, RouterModule, CurrencyPipe],
-  templateUrl: './cart.html',
-  styleUrls: ['./cart.css']
+
+export interface CartItem {
+  id?: number;
+  computerId: number;
+  computerName: string;
+  computerPrice: number;
+  computerImageUrl: string;
+  quantity: number;
+  components: {
+    id: number;
+    name: string;
+    price: number;
+    type: string;
+  }[];
+}
+
+@Injectable({
+  providedIn: 'root'
 })
-export class Cart implements OnInit {
-  cartItems: CartItem[] = [];
-  isLoading = true;
-  error: string | null = null;
+export class CartService {
+  private readonly API_URL = 'http://localhost:5097/api/orders';
+  private cartItems = new BehaviorSubject<CartItem[]>([]);
+  cartItems$ = this.cartItems.asObservable();
 
   constructor(
-    private cartService: CartService,
-    private authService: AuthService,
-    private router: Router
-  ) {}
-
-  ngOnInit(): void {
-    this.cartService.cartItems$.subscribe({
-      next: (items) => {
-        this.cartItems = items;
-        this.isLoading = false;
-      },
-      error: (err) => {
-        this.error = 'Failed to load cart. Please try again.';
-        this.isLoading = false;
-        console.error('Error loading cart:', err);
-      }
-    });
+    private http: HttpClient,
+    private authService: AuthService
+  ) {
+    this.loadLocalCart();
   }
 
-  updateQuantity(item: CartItem, quantity: number): void {
-    if (item.id !== undefined) {
-      this.cartService.updateQuantity(item.id, quantity);
+  private loadLocalCart() {
+    const stored = localStorage.getItem('cart');
+    if (stored) {
+      this.cartItems.next(JSON.parse(stored));
     }
   }
 
-  removeItem(itemId: number): void {
-    this.cartService.removeFromCart(itemId);
+  private saveLocalCart() {
+    localStorage.setItem('cart', JSON.stringify(this.cartItems.value));
   }
 
-  clearCart(): void {
-    this.cartService.clearCart();
+  private authHeaders() {
+    return { headers: this.authService.authHeader };
+  }
+
+  addToCart(item: Omit<CartItem, 'quantity'>) {
+    const currentItems = this.cartItems.value;
+    const existing = currentItems.find(
+      i => i.computerId === item.computerId &&
+           JSON.stringify(i.components) === JSON.stringify(item.components)
+    );
+
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      currentItems.push({ ...item, quantity: 1 });
+    }
+
+    this.cartItems.next([...currentItems]);
+    this.saveLocalCart();
+
+    // Sync with backend if logged in
+    if (this.authService.isAuthenticated) {
+      currentItems.forEach(ci => {
+        this.http.post<CartItem>(`${this.API_URL}`, ci, this.authHeaders())
+          .subscribe();
+      });
+    }
+  }
+
+  updateQuantity(itemId: number, quantity: number) {
+    const currentItems = this.cartItems.value;
+    const item = currentItems.find(i => i.id === itemId);
+    if (!item) return;
+
+    if (quantity < 1) {
+      this.removeFromCart(itemId);
+      return;
+    }
+
+    item.quantity = quantity;
+    this.cartItems.next([...currentItems]);
+    this.saveLocalCart();
+
+    if (this.authService.isAuthenticated) {
+      this.http.post<CartItem>(`${this.API_URL}`, item, this.authHeaders()).subscribe();
+    }
+  }
+
+  removeFromCart(itemId: number) {
+    const currentItems = this.cartItems.value.filter(i => i.id !== itemId);
+    this.cartItems.next(currentItems);
+    this.saveLocalCart();
+
+    if (this.authService.isAuthenticated) {
+      this.http.delete(`${this.API_URL}/${itemId}`, this.authHeaders()).subscribe();
+    }
+  }
+
+  clearCart() {
+    this.cartItems.next([]);
+    localStorage.removeItem('cart');
+
+    if (this.authService.isAuthenticated) {
+      this.http.delete(`${this.API_URL}`, this.authHeaders()).subscribe();
+    }
   }
 
   getTotalPrice(): number {
-    return this.cartService.getTotalPrice();
+    return this.cartItems.value.reduce((total, item) => {
+      const compTotal = item.components.reduce((sum, c) => sum + c.price, 0);
+      return total + (item.computerPrice + compTotal) * item.quantity;
+    }, 0);
   }
 
-  checkout(): void {
+  checkout(): Observable<any> {
     if (!this.authService.isAuthenticated) {
-      this.router.navigate(['/login'], { 
-        queryParams: { returnUrl: '/checkout' } 
-      });
-      return;
+      throw new Error('User not authenticated');
     }
-    
-    // Here you would typically navigate to a checkout page
-    // For now, we'll just clear the cart
-    this.cartService.clearCart();
-    this.router.navigate(['/orders']);
+
+    const payload = this.cartItems.value.map(item => ({
+      computerId: item.computerId,
+      quantity: item.quantity,
+      components: item.components.map(c => ({ id: c.id }))
+    }));
+
+    return this.http.post(`${this.API_URL}`, payload, this.authHeaders()).pipe(
+      tap(() => this.clearCart())
+    );
   }
 }
