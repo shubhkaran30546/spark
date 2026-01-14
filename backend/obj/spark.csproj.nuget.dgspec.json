@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/shubhkarandhillon/Documents/spark/backend/spark.csproj": {}
+    "/Users/pranavmehra/Desktop/Web Development/karan_project/spark/backend/spark.csproj": {}
   },
   "projects": {
-    "/Users/shubhkarandhillon/Documents/spark/backend/spark.csproj": {
+    "/Users/pranavmehra/Desktop/Web Development/karan_project/spark/backend/spark.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/shubhkarandhillon/Documents/spark/backend/spark.csproj",
+        "projectUniqueName": "/Users/pranavmehra/Desktop/Web Development/karan_project/spark/backend/spark.csproj",
         "projectName": "spark",
-        "projectPath": "/Users/shubhkarandhillon/Documents/spark/backend/spark.csproj",
-        "packagesPath": "/Users/shubhkarandhillon/.nuget/packages/",
-        "outputPath": "/Users/shubhkarandhillon/Documents/spark/backend/obj/",
+        "projectPath": "/Users/pranavmehra/Desktop/Web Development/karan_project/spark/backend/spark.csproj",
+        "packagesPath": "/Users/pranavmehra/.nuget/packages/",
+        "outputPath": "/Users/pranavmehra/Desktop/Web Development/karan_project/spark/backend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/shubhkarandhillon/.nuget/NuGet/NuGet.Config"
+          "/Users/pranavmehra/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -100,7 +100,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.416/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,0 +1,31 @@
+<!-- Update /Users/pranavmehra/Desktop/Web Development/karan_project/spark/spark-ui/src/app/pages/computer-list/computer-list.html -->
+<div class="computer-list-container">
+  <h1>Our Computers</h1>
+  
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading computers...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+    <button (click)="loadComputers()" class="retry-btn">Retry</button>
+  </div>
+
+  <!-- Computer Grid -->
+  <div *ngIf="!isLoading && !error" class="computer-grid">
+    <div *ngFor="let computer of computers" class="computer-card" [routerLink]="['/computers', computer.id]">
+      <div class="image-placeholder">
+        <img [src]="computer.imageUrl || 'assets/placeholder-computer.jpg'" [alt]="computer.name">
+      </div>
+      <div class="computer-info">
+        <h3>{{ computer.name }}</h3>
+        <p class="price">{{ computer.price | currency }}</p>
+        <p class="description">{{ computer.description }}</p>
+        <button class="add-to-cart" (click)="addToCart(computer)">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>

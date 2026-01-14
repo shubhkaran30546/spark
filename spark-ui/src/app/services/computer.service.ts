@@ -15,4 +15,7 @@ export class ComputerService {
   getComputers(): Observable<Computer[]> {
     return this.http.get<Computer[]>(this.apiUrl);
   }
+  getComputerById(id: number): Observable<Computer> {
+    return this.http.get<Computer>(`${this.apiUrl}/${id}`);
+  }
 }
