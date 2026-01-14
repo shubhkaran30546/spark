@@ -1,18 +1,30 @@
+<!-- src/app/components/navbar/navbar.html -->
 <nav class="navbar">
-  <div class="nav-left">
-    <span class="logo">⚡ SPARK</span>
+  <div class="nav-brand">
+    <a routerLink="/" class="logo">Spark Computers</a>
+  </div>
+  
+  <div class="nav-links">
+    <a routerLink="/" routerLinkActive="active">Home</a>
+    <a routerLink="/computers" routerLinkActive="active">Browse</a>
   </div>
 
-  <div class="nav-center">
-    <a routerLink="/">Browse</a>
-    <a routerLink="/about">About</a>
-    <a routerLink="/cart">Cart</a>
-  </div>
-
-  <div class="nav-right">
-    <div class="cart" routerLink="/cart">
-      🛒
-      <span class="badge">{{ cartCount }}</span>
+  <div class="nav-actions">
+    <a routerLink="/cart" class="cart-link">
+      🛒 Cart
+      <span class="cart-count" *ngIf="cartCount > 0">{{ cartCount }}</span>
+    </a>
+    
+    <div class="auth-buttons" *ngIf="!isAuthenticated; else userMenu">
+      <a routerLink="/login" class="btn btn-outline">Login</a>
+      <a routerLink="/register" class="btn btn-primary">Sign Up</a>
     </div>
+
+    <ng-template #userMenu>
+      <div class="user-menu">
+        <a routerLink="/orders" class="orders-link">My Orders</a>
+        <button (click)="onLogout()" class="btn btn-outline">Logout</button>
+      </div>
+    </ng-template>
   </div>
 </nav>

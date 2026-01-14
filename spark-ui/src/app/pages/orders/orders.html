@@ -1,0 +1,57 @@
+<!-- src/app/pages/orders/orders.html -->
+<div class="orders-container">
+  <h1>My Orders</h1>
+  
+  <div *ngIf="isLoading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading your orders...</p>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+
+  <div *ngIf="!isLoading && !error">
+    <div *ngIf="orders.length === 0" class="no-orders">
+      <p>You haven't placed any orders yet.</p>
+      <a routerLink="/" class="btn">Browse Computers</a>
+    </div>
+
+    <div *ngFor="let order of orders" class="order-card">
+      <div class="order-header">
+        <div class="order-info">
+          <h3>Order #{{ order.id }}</h3>
+          <p class="order-date">Placed on {{ order.orderDate | date:'medium' }}</p>
+        </div>
+        <div class="order-total">
+          <span>Total:</span>
+          <span class="amount">{{ order.totalPrice | currency }}</span>
+        </div>
+      </div>
+
+      <div class="order-details">
+        <div class="computer-info">
+          <img [src]="order.computer.imageUrl" [alt]="order.computer.name" class="computer-image">
+          <div>
+            <h4>{{ order.computer.name }}</h4>
+            <p class="price">{{ order.computer.price | currency }}</p>
+          </div>
+        </div>
+
+        <div class="components">
+          <h4>Components:</h4>
+          <ul>
+            <li *ngFor="let component of order.components" class="component-item">
+              <span class="component-name">{{ component.name }}</span>
+              <span class="component-price">{{ component.price | currency }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="order-actions">
+        <button class="btn btn-outline" (click)="viewOrderDetails(order.id)">View Details</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+// src/app/components/navbar/navbar.ts
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { CartService } from '../../services/cart.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +12,28 @@ import { RouterModule } from '@angular/router';
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.css']
 })
-export class NavbarComponent {
-  cartCount = 0; // later bind to CartService
+export class NavbarComponent implements OnInit {
+  cartCount = 0;
+  isAuthenticated = false;
+
+  constructor(
+    private cartService: CartService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.cartService.cartItems$.subscribe(items => {
+      this.cartCount = items.reduce((total, item) => total + item.quantity, 0);
+    });
+
+    this.authService.user$.subscribe(user => {
+      this.isAuthenticated = !!user;
+    });
+  }
+
+  onLogout(): void {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }
 }

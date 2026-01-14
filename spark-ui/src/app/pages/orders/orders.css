@@ -1,0 +1,170 @@
+/* src/app/pages/orders/orders.css */
+.orders-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border-left-color: #1976d2;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  background-color: #fde8e8;
+  color: #e74c3c;
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.no-orders {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.order-card {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem;
+  background: #f9f9f9;
+  border-bottom: 1px solid #eee;
+}
+
+.order-info h3 {
+  margin: 0 0 0.25rem 0;
+  color: #333;
+}
+
+.order-date {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.order-total {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.amount {
+  color: #1976d2;
+  font-weight: 600;
+  margin-left: 0.5rem;
+}
+
+.order-details {
+  padding: 1.25rem;
+}
+
+.computer-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.computer-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 1.25rem;
+}
+
+.computer-info h4 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.price {
+  margin: 0;
+  color: #1976d2;
+  font-weight: 500;
+}
+
+.components h4 {
+  margin: 0 0 0.75rem 0;
+  color: #444;
+  font-size: 1rem;
+}
+
+.component-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.component-name {
+  color: #555;
+}
+
+.component-price {
+  color: #1976d2;
+  font-weight: 500;
+}
+
+.order-actions {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid #eee;
+  text-align: right;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.btn:hover {
+  background: #1565c0;
+}
+
+.btn-outline {
+  background: white;
+  border: 1px solid #1976d2;
+  color: #1976d2;
+}
+
+.btn-outline:hover {
+  background: #f0f7ff;
+}
