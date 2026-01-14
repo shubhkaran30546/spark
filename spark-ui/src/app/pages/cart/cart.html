@@ -1,1 +1,72 @@
-<p>cart works!</p>
+<!-- src/app/pages/cart/cart.html -->
+<div class="cart-container">
+  <h1>Your Shopping Cart</h1>
+  
+  <div *ngIf="isLoading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading your cart...</p>
+  </div>
+
+  <div *ngIf="!isLoading && error" class="error-message">
+    {{ error }}
+  </div>
+
+  <div *ngIf="!isLoading && !error">
+    <div *ngIf="cartItems.length === 0" class="empty-cart">
+      <p>Your cart is empty</p>
+      <a routerLink="/" class="btn">Continue Shopping</a>
+    </div>
+
+    <div *ngIf="cartItems.length > 0" class="cart-items">
+      <div *ngFor="let item of cartItems" class="cart-item">
+        <img [src]="item.computerImageUrl" 
+             [alt]="item.computerName"
+             class="item-image">
+        
+        <div class="item-details">
+          <h3>{{ item.computerName }}</h3>
+          <p class="price">{{ item.computerPrice | currency }}</p>
+          
+          <div *ngIf="item.components.length > 0" class="components">
+            <h4>Selected Components:</h4>
+            <ul>
+              <li *ngFor="let component of item.components" class="component">
+                {{ component.name }} ({{ component.type }}) - {{ component.price | currency }}
+              </li>
+            </ul>
+          </div>
+          
+          <div class="quantity-controls">
+            <button (click)="updateQuantity(item, item.quantity - 1)">-</button>
+            <span>{{ item.quantity }}</span>
+            <button (click)="updateQuantity(item, item.quantity + 1)">+</button>
+            
+            <button class="remove-btn" (click)="removeItem(item.id!)">
+              Remove
+            </button>
+          </div>
+        </div>
+        
+        <div class="item-total">
+          {{ (item.computerPrice * item.quantity) + 
+             (item.components.reduce((sum, c) => sum + c.price, 0) * item.quantity) | currency }}
+        </div>
+      </div>
+
+      <div class="cart-summary">
+        <h3>Order Summary</h3>
+        <div class="summary-row">
+          <span>Subtotal:</span>
+          <span>{{ getTotalPrice() | currency }}</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total:</span>
+          <span class="total-amount">{{ getTotalPrice() | currency }}</span>
+        </div>
+        
+        <button class="checkout-btn" (click)="checkout()">Proceed to Checkout</button>
+        <button class="clear-cart" (click)="clearCart()">Clear Cart</button>
+      </div>
+    </div>
+  </div>
+</div>

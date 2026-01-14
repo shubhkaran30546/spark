@@ -1,54 +1,46 @@
-<div class="computer-details-container">
-  <button (click)="goBack()" class="back-button">← Back to Computers</button>
-
-  <!-- Loading State -->
-  <div *ngIf="isLoading" class="loading">
-    <div class="spinner"></div>
-    <p>Loading computer details...</p>
-  </div>
-
-  <!-- Error State -->
-  <div *ngIf="error" class="error">
-    <p>{{ error }}</p>
-    <button (click)="goBack()" class="btn">Go Back</button>
-  </div>
-
-  <!-- Computer Details -->
-  <div *ngIf="!isLoading && !error && computer" class="computer-details">
-    <div class="computer-header">
+<!-- src/app/pages/computer-details/computer-details.html -->
+<div class="computer-details" *ngIf="computer; else loading">
+  <button class="back-button" (click)="goBack()">← Back to List</button>
+  
+  <div class="computer-container">
+    <div class="computer-image">
+      <img [src]="computer.imageUrl || 'assets/placeholder-computer.jpg'" [alt]="computer.name">
+    </div>
+    
+    <div class="computer-info">
       <h1>{{ computer.name }}</h1>
       <p class="price">{{ computer.price | currency }}</p>
-    </div>
-
-    <div class="computer-content">
-      <div class="computer-image">
-        <img [src]="computer.imageUrl || 'assets/placeholder-computer.jpg'" [alt]="computer.name">
-      </div>
+      <p class="description">{{ computer.description || 'No description available.' }}</p>
       
-      <div class="computer-info">
-        <p class="description">{{ computer.description }}</p>
+      <div *ngIf="computer.components && computer.components.length > 0" class="components-section">
+        <h3>Available Components</h3>
+        <p>Select additional components (optional):</p>
         
-        <div class="components-section">
-          <h2>Components</h2>
-          
-          <div *ngFor="let type of ['CPU', 'GPU', 'RAM', 'Storage', 'Motherboard', 'PSU', 'Case']" 
-               class="component-category">
-            <h3>{{ type }}:</h3>
-            <div *ngFor="let component of getComponentType(computer.components, type)" 
-                 class="component-item">
-              <span class="component-name">{{ component.name }}</span>
-              <span class="component-price">{{ component.price | currency }}</span>
-            </div>
-            <div *ngIf="getComponentType(computer.components, type).length === 0" class="no-components">
-              No {{ type }} specified
-            </div>
+        <div class="components-grid">
+          <div *ngFor="let component of computer.components" 
+               class="component-card" 
+               [class.selected]="isComponentSelected(component)"
+               (click)="toggleComponent(component)">
+            <h4>{{ component.name }}</h4>
+            <p class="type">{{ component.type }}</p>
+            <p class="price">{{ component.price | currency }}</p>
           </div>
         </div>
-
-        <div class="actions">
-          <button class="add-to-cart" (click)="addToCart(computer)">Add to Cart</button>
-        </div>
       </div>
+      
+      <button class="add-to-cart" (click)="addToCart(computer)">Add to Cart</button>
     </div>
   </div>
 </div>
+
+<ng-template #loading>
+  <div class="loading" *ngIf="!error">
+    <div class="spinner"></div>
+    <p>Loading computer details...</p>
+  </div>
+  
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+    <button (click)="goBack()">Go Back</button>
+  </div>
+</ng-template>
