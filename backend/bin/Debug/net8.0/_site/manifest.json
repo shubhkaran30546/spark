@@ -1,5 +1,5 @@
 {
-  "source_base_path": "/Users/shubhkarandhillon/Documents/spark",
+  "source_base_path": "/Users/shubhkarandhillon/Documents/spark/backend",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -9,16 +9,6 @@
           "relative_path": "index.json"
         }
       }
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "README.md",
-      "output": {
-        ".html": {
-          "relative_path": "README.html"
-        }
-      },
-      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -365,6 +355,16 @@
         },
         ".json": {
           "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "wwwroot/lib/jquery-validation/LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "wwwroot/lib/jquery-validation/LICENSE.html"
         }
       },
       "version": ""

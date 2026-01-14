@@ -1,6 +1,9 @@
 // Models/DTOs/OrderResponseDto.cs
-namespace spark.Models
+namespace spark.Dtos
 {
+    /// <summary>
+    /// DTO returned to clients describing an order and its selected items.
+    /// </summary>
     public class OrderResponseDto
     {
         public int Id { get; set; }
@@ -10,6 +13,9 @@ namespace spark.Models
         public List<ComponentDto> Components { get; set; } = new();
     }
 
+    /// <summary>
+    /// DTO representing a computer within an order response.
+    /// </summary>
     public class ComputerDto
     {
         public int Id { get; set; }
@@ -18,6 +24,9 @@ namespace spark.Models
         public string? ImageUrl { get; set; }
     }
 
+    /// <summary>
+    /// DTO representing a component within an order response.
+    /// </summary>
     public class ComponentDto
     {
         public int Id { get; set; }

@@ -2,7 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using spark.Data;
 using spark.Models;
-
+using spark.Dtos;
+/// <summary>
+/// Administrative APIs for managing products. Requires the Admin role.
+/// </summary>
 [Authorize(Roles = "Admin")]
 [ApiController]
 [Route("api/admin/products")]
@@ -15,6 +18,9 @@ public class AdminProductController : ControllerBase
         _context = context;
     }
 
+    /// <summary>
+    /// Adds a new computer product to the catalog.
+    /// </summary>
     [HttpPost]
     public async Task<IActionResult> AddProduct(Computer computer)
     {
@@ -23,6 +29,9 @@ public class AdminProductController : ControllerBase
         return Ok();
     }
 
+    /// <summary>
+    /// Deletes a product by id.
+    /// </summary>
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteProduct(int id)
     {

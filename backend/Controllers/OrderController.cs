@@ -4,7 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using spark.Data;
 using System.Security.Claims;
 using spark.Models;
+using spark.Dtos;
 
+/// <summary>
+/// Handles order creation and retrieval for authenticated users.
+/// </summary>
 [ApiController]
 [Route("api/orders")]
 [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)]
@@ -17,6 +21,9 @@ public class OrdersController : ControllerBase
             _context = context;
         }
 
+        /// <summary>
+        /// Creates a new order for the currently authenticated user.
+        /// </summary>
         [HttpPost]
     public async Task<IActionResult> CreateOrder([FromBody] CreateOrderDto dto)
     {
@@ -70,6 +77,9 @@ public class OrdersController : ControllerBase
     }
 
 
+        /// <summary>
+        /// Returns all orders for the logged-in customer.
+        /// </summary>
         // GET: api/orders → all orders for logged-in customer
         [HttpGet]
         public async Task<IActionResult> GetOrders()
@@ -108,6 +118,9 @@ public class OrdersController : ControllerBase
             return Ok(ordersDto);
         }
 
+        /// <summary>
+        /// Returns a specific order by id for the logged-in customer.
+        /// </summary>
         // GET: api/orders/{id} → single order of logged-in customer
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOrder(int id)
@@ -147,6 +160,9 @@ public class OrdersController : ControllerBase
             return Ok(orderDto);
         }
 
+        /// <summary>
+        /// Deletes an order belonging to the logged-in customer.
+        /// </summary>
         // DELETE: api/orders/{id} → delete order of logged-in customer
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrder(int id)

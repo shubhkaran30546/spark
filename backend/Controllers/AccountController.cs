@@ -1,12 +1,16 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using spark.Models;
+using spark.Dtos;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 namespace spark.Controllers;
 
+/// <summary>
+/// Controller responsible for user authentication: register and login endpoints.
+/// </summary>
 [ApiController]
 [Route("api/auth")]
 public class AccountController : ControllerBase
@@ -25,6 +29,10 @@ public class AccountController : ControllerBase
         _config = config;
     }
 
+    /// <summary>
+    /// Registers a new user using the provided <see cref="RegisterDto"/>.
+    /// Returns 200 on success or 400 with errors.
+    /// </summary>
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterDto dto)
     {
@@ -44,6 +52,10 @@ public class AccountController : ControllerBase
         return Ok(new { message = "User registered successfully" });
     }
 
+    /// <summary>
+    /// Attempts to sign in a user with the provided <see cref="LoginDto"/> and
+    /// returns a JWT token on success.
+    /// </summary>
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginDto dto)
     {
@@ -59,6 +71,9 @@ public class AccountController : ControllerBase
         return Ok(new { token });
     }
 
+    /// <summary>
+    /// Generates a JWT token for the specified <see cref="ApplicationUser"/>.
+    /// </summary>
     private string GenerateJwt(ApplicationUser user)
 {
     var claims = new[]

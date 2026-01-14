@@ -1,9 +1,4 @@
 {
-  "README.html": {
-    "href": "README.html",
-    "title": "Spark – ASP.NET Core MVC Application | spark",
-    "summary": "Spark – ASP.NET Core MVC Application Spark is an ASP.NET Core MVC web application built with .NET 7, Entity Framework Core, and Razor Views. The project follows a layered architecture and supports database-driven features with authentication. \uD83D\uDE80 Tech Stack .NET 7 ASP.NET Core MVC Entity Framework Core SQLite / SQL Server Razor Views ASP.NET Core Identity BCrypt.Net \uD83D\uDCC2 Project Structure"
-  },
   "api/spark.Controllers.AccountController.html": {
     "href": "api/spark.Controllers.AccountController.html",
     "title": "Class AccountController | spark",
@@ -118,5 +113,10 @@
     "href": "index.html",
     "title": "This is the HOMEPAGE. | spark",
     "summary": "This is the HOMEPAGE. Refer to Markdown for how to write markdown files. Quick Start Notes: Add images to the images folder if the file is referencing an image."
+  },
+  "wwwroot/lib/jquery-validation/LICENSE.html": {
+    "href": "wwwroot/lib/jquery-validation/LICENSE.html",
+    "title": "The MIT License (MIT) | spark",
+    "summary": "The MIT License (MIT) Copyright Jörn Zaefferer Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
   }
 }

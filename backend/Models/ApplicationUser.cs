@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
+/// <summary>
+/// Extended identity user with first and last name properties used throughout the app.
+/// </summary>
 public class ApplicationUser : IdentityUser
 {
     [Required]

@@ -9,8 +9,17 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using Microsoft.Extensions.Logging;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configure logging for better traceability
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
+builder.Logging.SetMinimumLevel(LogLevel.Information);
 
 // =========================
 // Database
@@ -79,19 +88,21 @@ builder.Services.AddAuthentication(options =>
                 Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)
             )
         };
-        options.Events = new Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents
-        {
-            OnAuthenticationFailed = context =>
+            options.Events = new Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents
             {
-                Console.WriteLine("JWT Authentication failed: " + context.Exception?.Message);
-                return Task.CompletedTask;
-            },
-            OnTokenValidated = context =>
-            {
-                Console.WriteLine("JWT token validated for: " + context.Principal?.Identity?.Name);
-                return Task.CompletedTask;
-            }
-        };
+                OnAuthenticationFailed = context =>
+                {
+                    var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
+                    logger.LogWarning(context.Exception, "JWT Authentication failed: {Message}", context.Exception?.Message);
+                    return Task.CompletedTask;
+                },
+                OnTokenValidated = context =>
+                {
+                    var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
+                    logger.LogInformation("JWT token validated for: {User}", context.Principal?.Identity?.Name);
+                    return Task.CompletedTask;
+                }
+            };
     });
 
 builder.Services.AddAuthorization();
@@ -159,19 +170,71 @@ using (var scope = app.Services.CreateScope())
     DbInitializer.Initialize(scope.ServiceProvider);
 }
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
 app.UseCors("AllowAngular");
 app.UseHttpsRedirection();
+
+// Environment-specific error handling and security headers
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+{
+    c.DocumentTitle = "Spark API Docs";
+    c.ConfigObject.AdditionalItems["theme"] = "dark";
+});
+
+}
+else
+{
+    // Use a generic exception handler in production to avoid leaking details
+    app.UseExceptionHandler(errorApp =>
+    {
+        errorApp.Run(async context =>
+        {
+            var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
+            var exFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+            var ex = exFeature?.Error;
+            logger.LogError(ex, "Unhandled exception while processing request {Method} {Path}", context.Request.Method, context.Request.Path);
+
+            context.Response.StatusCode = 500;
+            context.Response.ContentType = "application/problem+json";
+            await context.Response.WriteAsJsonAsync(new
+            {
+                type = "https://httpstatuses.com/500",
+                title = "An unexpected error occurred.",
+                status = 500
+            });
+        });
+    });
+
+    // Enforce HSTS in production
+    app.UseHsts();
+}
+
+// Request / response logging middleware for traceability
+app.Use(async (context, next) =>
+{
+    var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
+    var sw = Stopwatch.StartNew();
+    logger.LogInformation("Incoming request {Method} {Path} from {RemoteIp}", context.Request.Method, context.Request.Path, context.Connection.RemoteIpAddress);
+    try
+    {
+        await next();
+        sw.Stop();
+        logger.LogInformation("Handled {Method} {Path} responded {StatusCode} in {ElapsedMs}ms", context.Request.Method, context.Request.Path, context.Response.StatusCode, sw.ElapsedMilliseconds);
+    }
+    catch (Exception ex)
+    {
+        sw.Stop();
+        logger.LogError(ex, "Unhandled exception for {Method} {Path} after {ElapsedMs}ms", context.Request.Method, context.Request.Path, sw.ElapsedMilliseconds);
+        throw;
+    }
+});
 
 // Serve static files (Angular app)
 app.UseStaticFiles();
 
-// 🔥 ORDER MATTERS
 app.UseAuthentication();
 app.UseAuthorization();
 

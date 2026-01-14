@@ -1,20 +1,47 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using spark.Data;
 using spark.Models;
 
 namespace spark.Data
 {
     public static class DbInitializer
     {
-        public static void Initialize(IServiceProvider serviceProvider)
+        public static async Task InitializeAsync(IServiceProvider serviceProvider)
         {
-            using var context = new ApplicationDbContext(
-                serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>());
+            using var scope = serviceProvider.CreateScope();
 
-            context.Database.EnsureCreated();
+            var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-            // Seed only once
+            // Ensure DB exists
+            await context.Database.EnsureCreatedAsync();
+
+            // =========================
+            // 1️⃣ Seed Admin Role
+            // =========================
+            if (!await roleManager.RoleExistsAsync("Admin"))
+            {
+                await roleManager.CreateAsync(new IdentityRole("Admin"));
+            }
+
+            // =========================
+            // 2️⃣ Assign Admin to First User
+            // =========================
+            var adminsExist = (await userManager.GetUsersInRoleAsync("Admin")).Any();
+            if (!adminsExist)
+            {
+                var firstUser = await userManager.Users.OrderBy(u => u.Id).FirstOrDefaultAsync();
+                if (firstUser != null)
+                {
+                    await userManager.AddToRoleAsync(firstUser, "Admin");
+                }
+            }
+
+            // =========================
+            // 3️⃣ Seed Products (Only Once)
+            // =========================
             if (context.Computers.Any())
             {
                 Console.WriteLine("Database already seeded.");
@@ -46,7 +73,7 @@ namespace spark.Data
             };
 
             context.Computers.AddRange(hp, imac, macAir);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
 
             var components = new[]
             {
@@ -57,7 +84,7 @@ namespace spark.Data
             };
 
             context.Components.AddRange(components);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
 
             Console.WriteLine("Database seeded successfully.");
         }
